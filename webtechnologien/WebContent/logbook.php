@@ -1,5 +1,10 @@
 <!-- WEBTEC Aufgabe Bootstrap -->
 <!-- WEBTEC Aufgabe PHP -->
+
+<!-- DATABASE -->
+<?php //include("mysql.php"); ?>
+<!-- /DATABASE -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,14 +42,14 @@
 	
 	<div class="container">
 
-		<form class="navbar-form pull-left">
+		<form action="form.php" method="post" class="navbar-form pull-left">
 
 
 			<table id="weather">
 				<tr>
 					<td>Wind Strength</td>
-					<td><input type="text" class="span2"></td>
-					<td></td>
+					<td><input type="text" class="span2" name="wind_strength"></td>
+					<td>km/h</td>
 				</tr>
 				<tr>
 					<td>Wind Direction</td>
@@ -66,33 +71,28 @@
 				</tr>
 				<tr>
 					<td>Air Pressure</td>
-					<td><input type="text" class="span2"></td>
+					<td><input type="text" class="span2" name="air_pressure"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>Temperature</td>
-					<td><input type="text" class="span2"></td>
+					<td><input type="text" class="span2" name="temperature"></td>
 					<td>C°</td>
 				</tr>
 				<tr>
 					<td>Clouds</td>
-					<td><input type="text" class="span2"></td>
+					<td><input type="text" class="span2" name="clouds"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>Rain</td>
-					<td><input type="text" class="span2"></td>
+					<td><input type="text" class="span2" name="rain"></td>
 					<td>mm</td>
 				</tr>
 				<tr>
 					<td>Wave Height</td>
-					<td><input type="text" class="span2"></td>
+					<td><input type="text" class="span2" name="wave_height"></td>
 					<td>m</td>
-				</tr>
-				<tr>
-					<td>Wind Strength</td>
-					<td><input type="text" class="span2"></td>
-					<td>km/h</td>
 				</tr>
 				<tr>
 					<td>Wave Direction</td>
@@ -115,12 +115,13 @@
 				</tr>
 				<tr>
 					<td>Date</td>
-					<td><input class="span2" type="datetime-local"></td>
+					<td><input class="span2" type="datetime-local" name="date_input"></td>
 					<td></td>
 				</tr>
 
 			</table>
 			<button type="submit" class="btn btn-info">Submit Data</button>
+			
 		</form>
 
 	</div>

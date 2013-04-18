@@ -36,7 +36,14 @@
 
     <div id="footer">
       <div class="container">
-        <p class="muted counter">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+        <p class="muted counter">
+		<?php
+$hit_count = @file_get_contents('count.txt'); 
+echo $hit_count; 
+$hit_count++; 
+@file_put_contents('count.txt', $hit_count); 
+?>
+		</p>
       </div>
     </div>
 	
