@@ -5,6 +5,28 @@
 <?php //include("mysql.php"); ?>
 <!-- /DATABASE -->
 
+<?php
+	$windStrength = '';
+	$windDirection = '';
+	$airPressure = ''; 
+	$temperature = ''; 
+	$clouds = '';
+	$rain = '';
+	$waveHeight = '';
+	$waveDirection = '';
+	$dateInput = '';
+
+	
+
+
+if(isset($_POST['submit']))
+	{
+		include("form.php");
+		include("auslesen.php");
+		
+	}
+?>   
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,32 +60,126 @@
 
 <body>
 
+<?php $var = ""; ?>
+
 	<?php include("header.php"); ?>
 	
 	<div class="container">
 
-		<form action="form.php" method="post" class="navbar-form pull-left">
+		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="navbar-form pull-left">
 
 
 			<table id="weather">
 				<tr>
 					<td>Wind Strength</td>
-					<td><input type="text" class="span2" name="wind_strength"></td>
-					<td>km/h</td>
+					<td><input type="text" class="span2" name="wind_strength" value="<?php echo $windStrength; ?>"></td>
+					<td>km/h  <?php echo $var; ?></td>
 				</tr>
 				<tr>
 					<td>Wind Direction</td>
 					<td>
+				
 						<div class="btn-group">
-							<select class="btn dropdown-toggle span2" name="wind_direction" size="1">
-								<option>North</option>
-								<option>East</option>
-								<option>South</option>
-								<option>West</option>
-								<option>North-West</option>
-								<option>North-East</option>
-								<option>South-West</option>
-								<option>South-East</option>
+							<select class="btn dropdown-toggle span2" name="wind_direction" size="1" >
+								
+								
+								<?php
+								
+								switch($windDirection) {
+									case 'North':
+										echo '<option value="North" selected>North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case '':
+										echo '<option value="North" selected>North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'East':
+										echo '<option value="North" >North</option>
+												<option value="East" selected>East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'South':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South" selected>South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'West':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West" selected>West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'North-West':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West" selected>North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'North-East':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East" selected>North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'South-West':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West" selected>South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'South-East':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East" selected>South-East</option>';
+										break;
+									
+								}
+								
+								?>
 							</select>
 						</div>
 					</td>
@@ -71,27 +187,27 @@
 				</tr>
 				<tr>
 					<td>Air Pressure</td>
-					<td><input type="text" class="span2" name="air_pressure"></td>
+					<td><input type="text" class="span2" name="air_pressure" value="<?php echo $airPressure; ?>"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>Temperature</td>
-					<td><input type="text" class="span2" name="temperature"></td>
+					<td><input type="text" class="span2" name="temperature" value="<?php echo $temperature; ?>"></td>
 					<td>C°</td>
 				</tr>
 				<tr>
 					<td>Clouds</td>
-					<td><input type="text" class="span2" name="clouds"></td>
+					<td><input type="text" class="span2" name="clouds" value="<?php echo $clouds; ?>"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>Rain</td>
-					<td><input type="text" class="span2" name="rain"></td>
+					<td><input type="text" class="span2" name="rain" value="<?php echo $rain; ?>"></td>
 					<td>mm</td>
 				</tr>
 				<tr>
 					<td>Wave Height</td>
-					<td><input type="text" class="span2" name="wave_height"></td>
+					<td><input type="text" class="span2" name="wave_height" value="<?php echo $waveHeight; ?>"></td>
 					<td>m</td>
 				</tr>
 				<tr>
@@ -99,14 +215,103 @@
 					<td>
 						<div class="btn-group">
 							<select class="btn dropdown-toggle span2" name="wave_direction" size="1">
-								<option>North</option>
-								<option>East</option>
-								<option>South</option>
-								<option>West</option>
-								<option>North-West</option>
-								<option>North-East</option>
-								<option>South-West</option>
-								<option>South-East</option>
+								<?php
+								
+								switch($waveDirection) {
+									case 'North':
+										echo '<option value="North" selected>North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case '':
+										echo '<option value="North" selected>North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'East':
+										echo '<option value="North" >North</option>
+												<option value="East" selected>East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'South':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South" selected>South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'West':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West" selected>West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'North-West':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West" selected>North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'North-East':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East" selected>North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'South-West':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West" selected>South-West</option>
+												<option value="South-East">South-East</option>';
+										break;
+									case 'South-East':
+										echo '<option value="North" >North</option>
+												<option value="East">East</option>
+												<option value="South">South</option>
+												<option value="West">West</option>
+												<option value="North-West">North-West</option>
+												<option value="North-East">North-East</option>
+												<option value="South-West">South-West</option>
+												<option value="South-East" selected>South-East</option>';
+										break;
+									
+								}
+								
+								?>
 							</select>
 						</div>
 					</td>
@@ -115,12 +320,11 @@
 				</tr>
 				<tr>
 					<td>Date</td>
-					<td><input class="span2" type="datetime-local" name="date_input"></td>
+					<td><input class="span2" type="datetime-local" name="date_input" value="<?php echo $dateInput; ?>"></td>
 					<td></td>
 				</tr>
-
 			</table>
-			<button type="submit" class="btn btn-info">Submit Data</button>
+			<button type="submit" name="submit" class="btn btn-info">Submit Data</button>
 			
 		</form>
 

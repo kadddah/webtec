@@ -22,7 +22,8 @@ else
 				rain int,	
 				waveHeight int,	
 				waveDirection varchar(50),	
-				dateInput varchar(50))";	
+				dateInput varchar(50),
+				id int)";	
 	//	Execute	query
 if (mysql_query($sql, $con))
   {
