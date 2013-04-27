@@ -5,6 +5,27 @@
 <?php //include("mysql.php"); ?>
 <!-- /DATABASE -->
 
+<?php
+	$windStrength = '';
+	$windDirection = 'North';
+	$airPressure = ''; 
+	$temperature = ''; 
+	$clouds = '';
+	$rain = '';
+	$waveHeight = '';
+	$waveDirection = '';
+	$dateInput = '';
+
+	
+
+
+if(isset($_POST['submit']))
+	{
+		include("form.php");
+		include("auslesen.php");
+	}
+?>   
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,24 +59,26 @@
 
 <body>
 
+<?php $var = ""; ?>
+
 	<?php include("header.php"); ?>
 	
 	<div class="container">
 
-		<form action="form.php" method="post" class="navbar-form pull-left">
+		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="navbar-form pull-left">
 
 
 			<table id="weather">
 				<tr>
 					<td>Wind Strength</td>
-					<td><input type="text" class="span2" name="wind_strength"></td>
-					<td>km/h</td>
+					<td><input type="text" class="span2" name="wind_strength" value="<?php echo $windStrength; ?>"></td>
+					<td>km/h  <?php echo $var; ?></td>
 				</tr>
 				<tr>
 					<td>Wind Direction</td>
 					<td>
 						<div class="btn-group">
-							<select class="btn dropdown-toggle span2" name="wind_direction" size="1">
+							<select class="btn dropdown-toggle span2" name="wind_direction" size="1" >
 								<option>North</option>
 								<option>East</option>
 								<option>South</option>
@@ -71,27 +94,27 @@
 				</tr>
 				<tr>
 					<td>Air Pressure</td>
-					<td><input type="text" class="span2" name="air_pressure"></td>
+					<td><input type="text" class="span2" name="air_pressure" value="<?php echo $airPressure; ?>"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>Temperature</td>
-					<td><input type="text" class="span2" name="temperature"></td>
+					<td><input type="text" class="span2" name="temperature" value="<?php echo $temperature; ?>"></td>
 					<td>C°</td>
 				</tr>
 				<tr>
 					<td>Clouds</td>
-					<td><input type="text" class="span2" name="clouds"></td>
+					<td><input type="text" class="span2" name="clouds" value="<?php echo $clouds; ?>"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>Rain</td>
-					<td><input type="text" class="span2" name="rain"></td>
+					<td><input type="text" class="span2" name="rain" value="<?php echo $rain; ?>"></td>
 					<td>mm</td>
 				</tr>
 				<tr>
 					<td>Wave Height</td>
-					<td><input type="text" class="span2" name="wave_height"></td>
+					<td><input type="text" class="span2" name="wave_height" value="<?php echo $waveHeight; ?>"></td>
 					<td>m</td>
 				</tr>
 				<tr>
@@ -115,12 +138,11 @@
 				</tr>
 				<tr>
 					<td>Date</td>
-					<td><input class="span2" type="datetime-local" name="date_input"></td>
+					<td><input class="span2" type="datetime-local" name="date_input" value="<?php echo $dateInput; ?>"></td>
 					<td></td>
 				</tr>
-
 			</table>
-			<button type="submit" class="btn btn-info">Submit Data</button>
+			<button type="submit" name="submit" class="btn btn-info">Submit Data</button>
 			
 		</form>
 

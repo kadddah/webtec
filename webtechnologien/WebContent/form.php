@@ -1,6 +1,5 @@
 <?php
-
-
+$id_count = @file_get_contents('count.txt'); 
 
 $con=mysql_connect("localhost","root","mastrear");
 if(!$con)
@@ -17,7 +16,9 @@ $sql="INSERT INTO Weather(	windStrength,
 							rain,
 							waveHeight,
 							waveDirection,
-							dateInput	)
+							dateInput,
+
+							id)
 VALUES
 (	'$_POST[wind_strength]',
 	'$_POST[wind_direction]',
@@ -27,13 +28,16 @@ VALUES
 	'$_POST[rain]',
 	'$_POST[wave_height]',
 	'$_POST[wave_direction]',
-	'$_POST[date_input]'		)";
+	'$_POST[date_input]',
+
+	'$id_count'	)";
 	
 	if (!mysql_query($sql,$con))
  {
  die('Error: ' . mysql_error());
  }
-echo "records added";
+//echo "records added";
+
 mysql_close($con);
 
 ?>	
