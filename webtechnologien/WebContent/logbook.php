@@ -25,6 +25,8 @@ if(isset($_POST['submit']))
 		include("auslesen.php");
 		
 	}
+	
+
 ?>   
 
 <!DOCTYPE html>
@@ -327,7 +329,7 @@ if(isset($_POST['submit']))
 			<button type="submit" name="submit" class="btn btn-info">Submit Data</button>
 			
 		</form>
-
+		<?php include("map.html"); ?>
 	</div>
 	<!-- /container -->
 	

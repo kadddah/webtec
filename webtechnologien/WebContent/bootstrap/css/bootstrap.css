@@ -107,10 +107,19 @@ img {
   -ms-interpolation-mode: bicubic;
 }
 
+#map_canvas {
+  width: 50%;
+  height: 390px;
+  float: right;
+  margin-right: 50px;
+}
+
 #map_canvas img,
 .google-maps img {
   max-width: none;
 }
+
+
 
 button,
 input,
