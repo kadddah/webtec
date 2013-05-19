@@ -8,33 +8,78 @@
 		</script>
 		<script type="text/javascript">
 			function initialize() {
+			
+				var myLatlng = new google.maps.LatLng(52.958566,4.759827);
+			
 				var mapOptions = {
-					center: new google.maps.LatLng(47.34, 9.59),
+					center: myLatlng,
 					zoom: 14,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					draggableCursor:'crosshair'
 				};
-				
-								var routePoints = [
-new google.maps.LatLng(47.34, 9.59),
-new google.maps.LatLng(47.33, 9.58),
-new google.maps.LatLng(47.32, 9.57),
-];
-var route = new google.maps.Polyline({
-path: routePoints,
-strokeColor: "#FF0000",
-strokeOpacity: 1.0,
-strokeWeight: 2
-});
-route.setMap(map);
-				
+						
 				var map = new google.maps.Map(document.getElementById("map_canvas"),
 				mapOptions);
 				
+				// Marker
 				
+				var marker = new google.maps.Marker({
+					position: myLatlng,
+					map: map,
+					draggable:true,
+					title: 'WebTec'
+				});
+				/*
+				google.maps.event.addListener(marker, 'rightclick', function() {
 
+    google.maps.event.trigger(map, 'rightclick', this);
+
+});*/
 				
+				// Polylines
 				
+				 var routeCoordinates = [
+					  new google.maps.LatLng(52.958566,4.759827),
+					  new google.maps.LatLng(52.96543,4.76322),
+					  new google.maps.LatLng(52.968676,4.776343),
+					  new google.maps.LatLng(52.988566,4.761534)
+				  ];
+				  
+				  var route = new google.maps.Polyline({
+					path: routeCoordinates,
+					draggable:true,
+					strokeColor: '#00FF00',
+					strokeOpacity: 1.0,
+					strokeWeight: 2
+				  });
+				  
+				  route.setMap(map); 
+				  
 			}
+			
+			
+			//overlay funktioniert nicht
+			map.overlayMapTypes.push(new google.maps.ImageMapType({
+getTileUrl: function (coord, zoom) {
+return "http://www.openportguide.org/tiles/actual/air_temperature/5/" + zoom + 
+"/" + coord.x + "/" + coord.y + ".png";
+},
+tileSize: new google.maps.Size(256, 256),
+name: "OpenSeaMap",
+maxZoom: 18
+}));
+
+map.overlayMapTypes.push(new google.maps.ImageMapType({
+getTileUrl: function (coord, zoom) {
+return "http://www.openportguide.org/tiles/actual/wind_vector/7/" + zoom + "/" + 
+coord.x + "/" + coord.y + ".png";
+},
+tileSize: new google.maps.Size(256, 256),
+name: "OpenSeaMap",
+maxZoom: 18
+}));
+			
+			google.maps.event.addDomListener(window, 'load', initialize);
 		</script>
 	</head>
 	<body onload="initialize()">
