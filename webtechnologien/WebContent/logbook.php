@@ -330,6 +330,7 @@ if(isset($_POST['submit']))
 			
 		</form>
 		<?php include("map.html"); ?>
+		<?php /*include("map2.html");*/ ?>
 	</div>
 	<!-- /container -->
 	

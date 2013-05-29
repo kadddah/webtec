@@ -6170,3 +6170,16 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+
+
+
+
+
+
+
+
+#my_map{
+ height: 350px;
+ width: 600px;
+}

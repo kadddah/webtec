@@ -6,6 +6,7 @@
 		<script type="text/javascript"
 			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoNu6i0_9yUT-13ngjOodatYMt7sWB2h4&sensor=false">
 		</script>
+
 		<script type="text/javascript">
 			function initialize() {
 			
@@ -29,12 +30,6 @@
 					draggable:true,
 					title: 'WebTec'
 				});
-				/*
-				google.maps.event.addListener(marker, 'rightclick', function() {
-
-    google.maps.event.trigger(map, 'rightclick', this);
-
-});*/
 				
 				// Polylines
 				
@@ -55,30 +50,12 @@
 				  
 				  route.setMap(map); 
 				  
+				  
+				  
 			}
 			
 			
-			//overlay funktioniert nicht
-			map.overlayMapTypes.push(new google.maps.ImageMapType({
-getTileUrl: function (coord, zoom) {
-return "http://www.openportguide.org/tiles/actual/air_temperature/5/" + zoom + 
-"/" + coord.x + "/" + coord.y + ".png";
-},
-tileSize: new google.maps.Size(256, 256),
-name: "OpenSeaMap",
-maxZoom: 18
-}));
 
-map.overlayMapTypes.push(new google.maps.ImageMapType({
-getTileUrl: function (coord, zoom) {
-return "http://www.openportguide.org/tiles/actual/wind_vector/7/" + zoom + "/" + 
-coord.x + "/" + coord.y + ".png";
-},
-tileSize: new google.maps.Size(256, 256),
-name: "OpenSeaMap",
-maxZoom: 18
-}));
-			
 			google.maps.event.addDomListener(window, 'load', initialize);
 		</script>
 	</head>
