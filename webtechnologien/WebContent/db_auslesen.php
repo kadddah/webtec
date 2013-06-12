@@ -1,3 +1,4 @@
+<!-- liest aus der Datenbank die eingegebenen Werte aus -->
 <?php
 
 $con=mysql_connect("localhost","root","mastrear");

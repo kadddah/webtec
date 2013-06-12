@@ -1,10 +1,3 @@
-<!-- WEBTEC Aufgabe Bootstrap -->
-<!-- WEBTEC Aufgabe PHP -->
-
-<!-- DATABASE -->
-<?php //include("mysql.php"); ?>
-<!-- /DATABASE -->
-
 <?php
 	$windStrength = '';
 	$windDirection = '';
@@ -21,8 +14,8 @@
 
 if(isset($_POST['submit']))
 	{
-		include("form.php");
-		include("auslesen.php");
+		include("db_save_form.php");
+		include("db_auslesen.php");
 		
 	}
 	
@@ -61,14 +54,12 @@ if(isset($_POST['submit']))
 </head>
 
 <body>
-
 <?php $var = ""; ?>
 
-	<?php include("header.php"); ?>
-	
-	<div class="container">
+<div id="formDiv">
 
-		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="navbar-form pull-left">
+<form action="" id="send-form" method="post" class="navbar-form pull-left">
+<!-- <form id="send-form" action="<?php //echo $_SERVER['PHP_SELF']; ?>" method="post" class="navbar-form pull-left"> -->
 
 
 			<table id="weather">
@@ -195,7 +186,7 @@ if(isset($_POST['submit']))
 				<tr>
 					<td>Temperature</td>
 					<td><input type="text" class="span2" name="temperature" value="<?php echo $temperature; ?>"></td>
-					<td>CÂ°</td>
+					<td>C°</td>
 				</tr>
 				<tr>
 					<td>Clouds</td>
@@ -326,79 +317,59 @@ if(isset($_POST['submit']))
 					<td></td>
 				</tr>
 			</table>
+			<!-- AJAX: remove send button
 			<button type="submit" name="submit" class="btn btn-info">Submit Data</button>
-			
+			-->
 		</form>
-		<?php include("map.html"); ?>
-	</div>
-	<!-- /container -->
 	
-	<?php include("footer.php"); ?>
-
-	<!-- Le javascript
+</div>	
+			<!-- Le javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="bootstrap/js/bootstrap.js"></script>
 
+	<script>
 
-</body>
-</html>
-
-
-<!-- WEBTEC Aufgabe HTML -->
-<!-- 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Logbook</title>
-</head>
-<body>
-	<form action=" ">
-		<table id="weather">
-			<tr>
-				<td>Wind Strength</td>
-				<td><input name="" type="text"></td>
-			</tr>
-			<tr>
-				<td>Wind Direction</td>
-				<td><input name="" type="text"></td>
-			</tr>
-			<tr>
-				<td>Air Pressure</td>
-				<td><input name="" type="text"></td>
-			</tr>
-			<tr>
-				<td>Temperature</td>
-				<td><input name="" type="text"></td>
-			</tr>
-			<tr>
-				<td>Clouds</td>
-				<td><input name="" type="text"></td>
-			</tr>
-			<tr>
-				<td>Rain</td>
-				<td><input name="" type="text"></td>
-			</tr>
-			<tr>
-				<td>Wave Height</td>
-				<td><input name="" type="text"></td>
-			</tr>
-			<tr>
-				<td>Wave Direction</td>
-				<td><input name="" type="text"></td>
-			</tr>
-			<tr>
-				<td>Date</td>
-				<td><input name="" type="datetime-local"></td>
-			</tr>
-
-		</table>
+			/* ausführen, wenn html-seite geladen wurde */
+		$(document).ready(function()
+		{
 		
-		<button id="save_weather">Save</button>
-	</form>
+		
+			// watch textarea for release of key press
+			$('#send-form').keyup(function(e) {
+				if (e.keyCode == 13) { //Enter is pressed
+			
+
+					/* ajax objekt zum aufruf & versand an das skript
+					'name' und 'email' sind in der data-zeile die variablen für das php-skript */
+					$.ajax({
+						type: "POST",
+						url: "db_save_form.php",
+						data: "wind_strength=" + $("#wind_strength").val() + "wind_direction=" + $("#wind_direction").val() + 
+						"air_pressure=" + $("#air_pressure2").val() + "temperature=" + $("#temperature").val() + 
+						"clouds=" + $("#clouds").val() + "rain=" + $("#rain").val() + "wave_height=" + $("#wave_height").val() +
+						"wave_direction=" + $("#wave_direction").val() + "date_input=" + $("#date_input").val(),
+						
+						success: function(msg)
+						{
+							/* form-div verstecken, seite nachladen & wieder einblenden (2000 ms) */
+							$("#formDiv").hide().load("Tippitoppi!!!").fadeIn(2000);
+						}
+					});
+					
+					/* wichtig!
+					sonst schickt der browser das formular ab und
+					und ruft die seite auf die bei action="" hinterlegt wurde.
+					dann verlässt er nämlich die bisherige seite... */
+					return false;
+				
+				}
+
+			});
+
+		});
+	
+	</script>
 </body>
 </html>
-
- -->
