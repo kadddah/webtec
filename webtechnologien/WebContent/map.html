@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<script type="text/javascript"
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoNu6i0_9yUT-13ngjOodatYMt7sWB2h4&sensor=false">
+		</script>
+		<div id="map">
+		<script type="text/javascript">
+			function initialize() {
+			
+				var myLatlng = new google.maps.LatLng(52.958566,4.759827);
+			
+				var mapOptions = {
+					center: myLatlng,
+					zoom: 14,
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					draggableCursor:'crosshair'
+				};
+						
+				var map = new google.maps.Map(document.getElementById("map_canvas"),
+				mapOptions);
+				
+				// Marker
+				
+				var marker = new google.maps.Marker({
+					position: myLatlng,
+					map: map,
+					draggable:true,
+					title: 'WebTec'
+				});
+				
+				
+				// Polylines
+				
+				 var routeCoordinates = [
+					  new google.maps.LatLng(52.958566,4.759827),
+					  new google.maps.LatLng(52.96543,4.76322),
+					  new google.maps.LatLng(52.968676,4.776343),
+					  new google.maps.LatLng(52.988566,4.761534)
+				  ];
+				  
+				  var route = new google.maps.Polyline({
+					path: routeCoordinates,
+					draggable:true,
+					strokeColor: '#00FF00',
+					strokeOpacity: 1.0,
+					strokeWeight: 2
+				  });
+				  
+				  route.setMap(map); 
+				  
+			}
+			
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+		</div>
+	</head>
+	<body onload="initialize()">
+     <?php include("header.php"); ?>
+		<div id="map_canvas" ></div>
+     <?php include("footer.php"); ?>
+	</body>
+</html>
