@@ -1,17 +1,19 @@
 <?php
 
-	'$_POST[wind_strength]';
-	'$_POST[wind_direction]';
-	'$_POST[air_pressure]';
-	'$_POST[temperature]';
-	'$_POST[clouds]';
-	'$_POST[rain]';
-	'$_POST[wave_height]';
-	'$_POST[wave_direction]';
-	'$_POST[date_input]';
+
+
+$wind_strength = $_POST["wind_strength"];
+$wind_direction =	$_POST["wind_direction"];
+$air_pressure =	$_POST["air_pressure"];
+$temperature =	$_POST["temperature"];
+$clouds =	$_POST["clouds"];
+$rain =	$_POST["rain"];
+$wave_height =	$_POST["wave_height"];
+$wave_direction =	$_POST["wave_direction"];
+$date_input =	$_POST["date_input"];
 
 $id_count = @file_get_contents('count.txt'); 
-
+echo("aaaaaaaaaaaaaaa" . $temperature);
 $con=mysql_connect("localhost","root","mastrear");
 if(!$con)
 	{
@@ -31,15 +33,15 @@ $sql="INSERT INTO Weather(	windStrength,
 
 							id)
 VALUES
-(	'$_POST[wind_strength]',
-	'$_POST[wind_direction]',
-	'$_POST[air_pressure]',
-	'$_POST[temperature]',
-	'$_POST[clouds]',
-	'$_POST[rain]',
-	'$_POST[wave_height]',
-	'$_POST[wave_direction]',
-	'$_POST[date_input]',
+(	'$wind_strength',
+	'$wind_direction',
+	'$air_pressure',
+	'$temperature',
+	'$clouds',
+	'$rain',
+	'$wave_height',
+	'$wave_direction',
+	'$date_input',
 
 	'$id_count'	)";
 	

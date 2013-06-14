@@ -10,7 +10,7 @@
 	$dateInput = '';
 
 	
-
+/*
 
 if(isset($_POST['submit']))
 	{
@@ -19,7 +19,7 @@ if(isset($_POST['submit']))
 		
 	}
 	
-
+*/
 ?>   
 
 <!DOCTYPE html>
@@ -186,7 +186,7 @@ if(isset($_POST['submit']))
 				<tr>
 					<td>Temperature</td>
 					<td><input type="text" class="span2" name="temperature" value="<?php echo $temperature; ?>"></td>
-					<td>C°</td>
+					<td>C&ordm;</td>
 				</tr>
 				<tr>
 					<td>Clouds</td>
@@ -331,7 +331,7 @@ if(isset($_POST['submit']))
 
 	<script>
 
-			/* ausführen, wenn html-seite geladen wurde */
+			/* ausfï¿½hren, wenn html-seite geladen wurde */
 		$(document).ready(function()
 		{
 		
@@ -340,28 +340,30 @@ if(isset($_POST['submit']))
 			$('#send-form').keyup(function(e) {
 				if (e.keyCode == 13) { //Enter is pressed
 			
-
-					/* ajax objekt zum aufruf & versand an das skript
-					'name' und 'email' sind in der data-zeile die variablen für das php-skript */
+					/*var dataContent = 'wind_strength=' + $('#wind_strength').val() + 'wind_direction=' + $('#wind_direction').val() + 
+						'air_pressure=' + $('#air_pressure2').val() + 'temperature=' + $('#temperature').val() + 
+						'clouds=' + $('#clouds').val() + 'rain=' + $('#rain').val() + 'wave_height=' + $('#wave_height').val() +
+						'wave_direction=' + $('#wave_direction').val() + 'date_input=' + $('#date_input').val(),
+						*/
+					var dataContent = 'wind_strength=' + wind_strength + 'wind_direction=' + wind_direction + 'air_pressure=' + air_pressure2 + 'temperature=' + temperature + 'clouds=' + clouds + 'rain=' + rain + 'wave_height=' + wave_height + 'wave_direction=' + wave_direction + 'date_input=' + date_input;
+						
+			
+					/* ajax objekt zum aufruf & versand an das skript */
 					$.ajax({
 						type: "POST",
 						url: "db_save_form.php",
-						data: "wind_strength=" + $("#wind_strength").val() + "wind_direction=" + $("#wind_direction").val() + 
-						"air_pressure=" + $("#air_pressure2").val() + "temperature=" + $("#temperature").val() + 
-						"clouds=" + $("#clouds").val() + "rain=" + $("#rain").val() + "wave_height=" + $("#wave_height").val() +
-						"wave_direction=" + $("#wave_direction").val() + "date_input=" + $("#date_input").val(),
-						
+						data: dataContent,
 						success: function(msg)
 						{
 							/* form-div verstecken, seite nachladen & wieder einblenden (2000 ms) */
-							$("#formDiv").hide().load("Tippitoppi!!!").fadeIn(2000);
+							$("#formDiv").hide().fadeIn(2000);
 						}
 					});
 					
 					/* wichtig!
 					sonst schickt der browser das formular ab und
 					und ruft die seite auf die bei action="" hinterlegt wurde.
-					dann verlässt er nämlich die bisherige seite... */
+					dann verlï¿½sst er nï¿½mlich die bisherige seite... */
 					return false;
 				
 				}
@@ -369,7 +371,6 @@ if(isset($_POST['submit']))
 			});
 
 		});
-	
 	</script>
 </body>
 </html>
